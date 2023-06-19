@@ -3,8 +3,7 @@ import sys
 import re                                                                                                                   
 import os   
 import json                                                                                                                
-import paho.mqtt.client as mqtt                                                                                             
-#import paho.mqtt.publish as publish
+import paho.mqtt.client as mqtt      
 from datetime import datetime
 import traceback
 
