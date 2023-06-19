@@ -1,0 +1,70 @@
+####################################################################################
+#### Use base image to compile AlsavoCtrl
+####################################################################################
+FROM python:3.10-alpine as build
+
+#### Install build dependencies for AlsavoCtrl
+RUN apk add cmake make musl-dev build-base linux-headers curl-dev
+		
+#### Copy AlsavoCtrl files to image
+WORKDIR ../AlsavoCtrl
+
+COPY ../AlsavoCtrl/* .
+
+#### Build AlsavoCtrl
+RUN mkdir build
+
+WORKDIR /AlsavoCtrl/build
+
+#RUN cmake ..
+#RUN make
+RUN cmake -DCMAKE_EXE_LINKER_FLAGS="-static -Os" ..
+RUN make
+
+####################################################################################
+#### Build final image
+####################################################################################
+#FROM python:3.10-alpine
+FROM debian
+
+#### Define variables
+ENV mqtt_server=localhost
+ENV mqtt_server_port=1883
+ENV alsavo_ip=127.0.0.1
+ENV alsavo_port=5000
+ENV alsavo_serial=xxxx
+ENV alsavo_password=pass
+
+#### Copy files
+RUN mkdir AlsavoCtrl
+
+COPY --from=build \
+    ./AlsavoCtrl/build/AlsavoCtrl \
+    ./AlsavoCtrl/
+
+#COPY /crontab ./crontab
+
+COPY /mqpublish.py ./mqpublish.py
+
+COPY /request_status.sh ./request_status.sh
+
+RUN chmod u+x /request_status.sh
+
+#### Install dependencies
+RUN apt-get update && \
+        apt install -y python3-pip && \
+	apt install -y python3-paho-mqtt && \
+        apt install -y cron
+
+#RUN apk update && \
+#    apk add --no-cache \
+#        bash
+
+#RUN pip3 install paho-mqtt
+
+#### Import crontab schedule
+#RUN crontab crontab
+RUN (crontab -l -u root; echo "*/5 * * * * bash /request_status.sh") | crontab
+
+#CMD ["crond", "-f"]
+CMD ["cron", "-f"]
