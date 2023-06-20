@@ -1,8 +1,8 @@
 # com.haislund.homeassistant.alsavo
 
-Debian Docker image that publishes states from an Alsavo Heat Pump (taken from the Alsavo Pro Cloud Server) to MQTT and description of how to configure Home Assistant to use the values.
+Debian Docker image that publishes states from an Alsavo Heat Pump (taken from the Alsavo Pro Cloud Server) to MQTT and a description of how to configure Home Assistant to use the values.
 
-The Docker image uses a compiled version of AlsavoCtrl developed by Mike Strandborg - [GitHub link](https://github.com/strandborg/AlsavoCtrl).
+The Docker image uses a compiled version of AlsavoCtrl developed by Mikko Strandborg - [GitHub link](https://github.com/strandborg/AlsavoCtrl).
 
 # Docker container
 An already build image is available at Docker Hub: peterhaislund/alsavo_status
