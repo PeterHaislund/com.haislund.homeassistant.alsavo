@@ -72,4 +72,25 @@ mqtt:
       state_topic: "stat/pool/water_out_temp"
       state_class: "measurement"
       unit_of_measurement: "°C"
+    - name: "Pool Heater - Ambient Temperature"
+      unique_id: a6a1beb5-123d-4e97-99dd-059c6f4b4bc8
+      state_topic: "stat/pool/ambient_temp"
+      state_class: "measurement"
+      unit_of_measurement: "°C"
+    - name: "Pool Heater - Fan Speed"
+      unique_id: f3a946a0-3a15-4d04-be82-8c25206b78e4
+      state_topic: "stat/pool/fan_speed"
+      state_class: "measurement"
+      unit_of_measurement: "rpm"
+    - name: "Pool Heater - Heating"
+      unique_id: bdcf6edf-5f94-41df-8556-304baa7101fe
+      state_topic: "stat/pool/heating"
+    - name: "Pool Heater - Target Temperature"
+      unique_id: 1495cd1f-d3df-46e1-a225-157df2d2cbd0
+      state_topic: "stat/pool/target_temp"
+      state_class: "measurement"
+      unit_of_measurement: "°C"
+    - name: "Pool Heater - Power Mode"
+      unique_id: b02f5299-a6a8-48fe-81d5-ab41501ad38d
+      state_topic: "stat/pool/power_mode"
 ```
