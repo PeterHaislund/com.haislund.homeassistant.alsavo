@@ -33,26 +33,25 @@ ENV mqtt_server=None
 ENV mqtt_server_port=1883
 ENV mqtt_server_user=None
 ENV mqtt_server_password=None
-ENV alsavo_password=pass
-ENV alsavo_serial=xxxx
+ENV alsavo_password=None
+ENV alsavo_serial=None
 ENV publish_interval=300
 ENV log_size=1000
 
 #### Copy files
 RUN mkdir app
+RUN mkdir data
 
 COPY --from=build \
     ./AlsavoCtrl/build/AlsavoCtrl \
     ./app/
-COPY /mqpublish.py /app/mqpublish.py
-COPY /app.sh /app/app.sh
-
-RUN chmod u+x /app/app.sh
+COPY /app.py /app/app.py
+COPY /config.py /app/config.py
 
 #### Install dependencies
 RUN apt-get update && \
         apt install -y python3-pip && \
 	    apt install -y python3-paho-mqtt
 
-#### Set app.sh as image main process
-CMD /app/app.sh
+#### Set app.py as image main process
+CMD [ "python3", "/app/app.py"]
