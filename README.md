@@ -14,6 +14,7 @@ Logs are written to /data/alsavo_status.log so mapping the /data directory to th
 Configuration can be done either by a config file or by using environmental variables when creating the container.
 
 The image will however always use the config file, so if using environmental variables a default config will be automatically created.
+The easiest way to get started is to create the container using environmental variables and change the default config file afterwards.
 
 ### Config file
 The config file is located in /data/config.json, so mapping the /data directory to the Docker host is highly recommended to avoid loosing any changes to the default config.
@@ -59,7 +60,7 @@ Topics in the config have the following purpose:
 - topic: Topic to publish to MQTT
 - mappings: Transformation rules to apply (see below)
 
-See the protocol description in AlsavoCtrl to map type/index to parameters.
+See the [protocol description](https://github.com/PeterHaislund/com.haislund.homeassistant.alsavo/blob/master/AlsavoCtrl/Alsavo%20Protocol.txt) in AlsavoCtrl to map type/index to parameters.
 
 #### Mappings
 2 kinds of mappings can be applied:
@@ -134,7 +135,7 @@ Example of creating/running the container:
 
 ```
 docker image pull peterhaislund/alsavo_status
-docker create -e alsavo_serial=XXXXXXXXX -e alsavo_password=XXXXXX -e mqtt_server=192.168.1.128 -e TZ=Europe/Copenhagen --name alsavo_status peterhaislund/alsavo_status
+docker create -e alsavo_serial=XXXXXXXXX -e alsavo_password=XXXXXX -e mqtt_server=192.168.1.128 -e TZ=Europe/Copenhagen -v /volume1/docker/alsavo_status:/data --name alsavo_status peterhaislund/alsavo_status
 ```
 
 It is recommended to map the /data directory in the container to the Docker host.
