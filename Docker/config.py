@@ -46,31 +46,31 @@ class Config:
                             {
                                 "type": "status",
                                 "index": 16,
-                                "topic": "stats/pool/water_in_temp",
+                                "topic": "stat/pool/water_in_temp",
                                 "mappings": []
                             },
                             {
                                 "type": "status",
                                 "index": 17,
-                                "topic": "stats/pool/water_out_temp",
+                                "topic": "stat/pool/water_out_temp",
                                 "mappings": []
                             },
                             {
                                 "type": "status",
                                 "index": 18,
-                                "topic": "stats/pool/ambient_temp",
+                                "topic": "stat/pool/ambient_temp",
                                 "mappings": []
                             },
                             {
                                 "type": "status",
                                 "index": 22,
-                                "topic": "stats/pool/fan_speed",
+                                "topic": "stat/pool/fan_speed",
                                 "mappings": []
                             },
                             {
                                 "type": "status",
                                 "index": 22,
-                                "topic": "stats/pool/heating",
+                                "topic": "stat/pool/heating",
                                 "mappings": [
                                     {
                                         "type": "eval",
@@ -94,7 +94,7 @@ class Config:
                             {
                                 "type": "config",
                                 "index": 16,
-                                "topic": "stats/pool/power_mode",
+                                "topic": "stat/pool/power_mode",
                                 "mappings": [
                                     {
                                         "type": "replace",
@@ -118,7 +118,7 @@ class Config:
                             {
                                 "type": "config",
                                 "index": 1,
-                                "topic": "stats/pool/target_temp",
+                                "topic": "stat/pool/target_temp",
                                 "mappings": [
                                     {
                                         "type": "eval",
