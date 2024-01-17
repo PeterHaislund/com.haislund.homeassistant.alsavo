@@ -1,15 +1,14 @@
 import json
 import os.path
 import os  
+from constants import CONFIG_FILE
 
 class Config:
-    config_file = "/data/config.json"
-    #config_file = "c:/temp/config.json"
     
     def load_config(self):
         self.validate_config()
         
-        with open(self.config_file, 'r') as openfile:
+        with open(CONFIG_FILE, 'r') as openfile:
             config = json.load(openfile)
     
         return config
@@ -27,7 +26,7 @@ class Config:
         return topics
         
     def validate_config(self):
-        if not os.path.isfile(self.config_file):
+        if not os.path.isfile(CONFIG_FILE):
             # Generate default config based on ENV variables if config file doesn't exist
             config = {
                 "publish_interval": os.getenv("publish_interval"),
@@ -131,5 +130,5 @@ class Config:
                 ]			
               }
               
-            with open(self.config_file, 'a') as outfile:
+            with open(CONFIG_FILE, 'a') as outfile:
               json.dump(config, outfile, indent=4)
